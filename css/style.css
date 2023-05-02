@@ -1,0 +1,115 @@
+/* common */
+
+
+  @font-face{ 
+    font-family: 'DQ';
+    src: url('../fonts/PixelMplus10-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  html{
+    height: 100%;
+    width: 100%;
+  }
+
+  body{
+    height: 100%;
+    font-family: 'DQ';
+    color: #fff;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+/* common */
+
+.main{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+}
+.bgi{
+  width: 100%;
+  height: 45%;
+  object-fit: cover;
+  object-position: 0 -180px;
+  z-index: -1;
+  margin: 25% 0 ;
+  border-top: 4px solid #fff;
+  border-bottom: 4px solid #fff;
+  /* filter: blur(1px); */
+}
+.dott{
+  position: absolute;
+  top: 35%;
+  left: calc(50% - 60px);
+  width: 120px;
+  z-index: 0;
+}
+.frame{
+  position: absolute;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  outline: 1px solid #000;
+  background-color: #262624;
+}
+.mairei{
+  top: 20px;
+  right: 50px;
+  padding: 4px 12px;
+  line-height: 30px;
+}
+.command{
+  bottom: 10px;
+  left: 10px;
+}
+.check{
+  bottom: 100px;
+  left: 100px;
+  z-index: 2;
+  display: none;
+}
+.check.apear{
+  display: block;
+}
+.command dt,
+.check dt{
+  text-align: center;
+  font-weight: normal;
+  border-bottom: 3px solid #fff;
+  padding: 6px 10px;
+}
+.command-list{
+  position: relative;
+  padding: 8px 8px 8px 26px;
+}
+.check-list{
+  position: relative;
+  padding: 8px 8px 8px 36px;
+}
+.blink::before{
+  content: url("../img/矢印.png");
+  display: inline-block;
+  vertical-align: middle;
+  transform: scale(0.06);
+  position: absolute;
+  top: -198px;
+  left: -125px;
+  animation: blinkEffect .6s step-end infinite;
+}
+
+@keyframes blinkEffect {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.katuya{
+  bottom: 60px;
+  left: 190px;
+  width: 400px;
+  height: 100px;
+  padding: 8px;
+}
