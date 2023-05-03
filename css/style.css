@@ -29,16 +29,16 @@
 .main{
   position: relative;
   /* height: 100%; */
-  width: 100%;
+  /* width: 100%;
   aspect-ratio: 4 / 3;
-  max-width: 600px;
+  max-width: 600px; */
   /* background-color: #993e3e; */
 }
 .bgi{
-  width: 100%;
+  width: 600px;
   height: 300px;
   object-fit: cover;
-  object-position: 0 -150px;
+  object-position: 50% 85%;
   z-index: -1;
   margin: calc(40% - 150px) 0 calc(60% - 150px) ;
   border-top: 4px solid #fff;
