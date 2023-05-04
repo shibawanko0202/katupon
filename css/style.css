@@ -40,7 +40,7 @@
 }
 .katsuya{
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: calc(50% - 50px);
   width: 100px;
   z-index: 0;
@@ -108,16 +108,31 @@
   left: -125px;
   animation: blinkEffect .6s step-end infinite;
 }
-.text{
+.textbox{
   bottom: 37.5px;
   left: 185px;
   width: 400px;
   height: 100px;
   padding: 8px;
 }
+.text{
+  width: 100%;
+  white-space: nowrap;
+  caret-color: transparent;
+  /* overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,.5);
+  animation: typing 1.5s steps(24),
+    blink .5s steps(1) infinite alternate; */
+}
 
 @keyframes blinkEffect {
   0% { opacity: 1; }
   50% { opacity: 0; }
   100% { opacity: 1; }
+}
+@keyframes typing{
+  0% {width: 0;}
+}
+@keyframes blink{
+  50% {border-right-color: transparent;}
 }

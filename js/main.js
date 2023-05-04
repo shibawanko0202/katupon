@@ -36,6 +36,9 @@ const check_lists = document.getElementsByClassName(" check-list");
 let current_check = 0;
 let check = false;
 
+const text = document.getElementById("text");
+
+
 
 document.addEventListener('keydown',(e)=>{
 
@@ -48,6 +51,7 @@ document.addEventListener('keydown',(e)=>{
   };
 
   if(!check){
+    // 確認画面
     for(let i = 0;i < com_lists.length;i++){
       com_lists[i].classList.remove("blink");
     };
@@ -81,7 +85,7 @@ document.addEventListener('keydown',(e)=>{
     };
     
   } else if(check){
-
+    // 4択画面
     for(let i = 0;i < check_lists.length;i++){
       check_lists[i].classList.remove("blink");
     };
@@ -111,6 +115,16 @@ document.addEventListener('keydown',(e)=>{
         setTimeout(() => {
           katsuya.classList.remove("flash");
         }, "1000");
+
+        if(current_command == 0){
+          text.textContent = "・・・";
+        }else if(current_command == 1){
+          text.textContent = "け、『けいえいはたん』";
+        }else if(current_command == 2){
+          text.textContent = "・・・";
+        }else if(current_command == 3){
+          text.textContent = "あ、そっすね・・・";
+        };
       };
 
       check = false;
