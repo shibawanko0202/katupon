@@ -38,6 +38,7 @@ let check = false;
 
 const text = document.getElementById("text");
 
+const blackout = document.getElementById("blackout");
 
 
 document.addEventListener('keydown',(e)=>{
@@ -118,6 +119,7 @@ document.addEventListener('keydown',(e)=>{
 
         if(current_command == 0){
           text.textContent = "・・・";
+          blackout.classList.add("in");
         }else if(current_command == 1){
           text.textContent = "け、『けいえいはたん』";
         }else if(current_command == 2){

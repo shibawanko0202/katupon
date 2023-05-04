@@ -10,6 +10,8 @@
 
   html{
     height: 100%;
+    width: 100%;
+    cursor: none;
   }
 
   body{
@@ -22,6 +24,19 @@
   }
 
 /* common */
+
+.blackout{
+  position: absolute;
+  width: 600px;
+  height: 100%;
+  z-index: 999;
+  background-color: #000;
+  opacity: 0;
+}
+.blackout.in{
+  opacity: 1;
+  transition: all 3s 1s linear;
+}
 
 .main{
   position: relative;
