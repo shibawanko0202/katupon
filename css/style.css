@@ -1,6 +1,5 @@
 /* common */
 
-
   @font-face{ 
     font-family: 'DQ';
     src: url('../fonts/PixelMplus10-Regular.ttf') format('truetype');
@@ -32,24 +31,26 @@
   position: absolute;
   width: 700px;
   height: 100%;
-  z-index: 999;
   background-color: #000000e1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* align-items: center; */
   align-content: center;
   gap: 6px 4px;
   margin: 0 ;
-  opacity: 1;
-  transition: opacity 1s;
+  filter: blur(0);
 }
-.graph.off{
-  opacity: 0;
+.graph.blur{
+  filter: blur(10px);
+}
+.graph .guaid{
+  position: absolute;
+  top: 40px;
+  left: calc(50% - 80px);
+  opacity: .7;
 }
 .box {
-  position: relative;
-  /* min-width: 200px; */
+  position: absolute;
   width: 40%;
   height: 230px;
   display: -webkit-box;
@@ -65,8 +66,33 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  /* background: #fff; */
   opacity: 1;
+  transition: all 1.2s;
+}
+.box.one{
+  top: 80px;
+  left: calc(50% - 270px);
+}
+.box.two{
+  top: 80px;
+  left: calc(50% - 10px);
+}
+.box.three{
+  top:300px;
+  left: calc(50% - 270px);
+}
+.box.four{
+  top:300px;
+  left: calc(50% - 10px);
+}
+.box.big{
+  transform: scale(2);
+  top: calc(50% - 150px);
+  left: calc(50% - 140px);
+}
+.box.small{
+  transform: scale(.5);
+  opacity: .1;
 }
 .box .percent {
   position: relative;
@@ -112,42 +138,29 @@
 .box .percent .number .title {
   font-size: 22px;
 }
-.box .text {
+.box .graphtext {
+  white-space: nowrap;
   padding: 10px 0 0;
   text-align: center;
-  /* font-weight: bold; */
   font-size: 20px;
   color: #fff;
 }
-.box .percent .line.rotate{
-  -webkit-animation: circleAnim 1.2s forwards;
-          animation: circleAnim 1.2s forwards;
-}
-.box.blue .percent .line.rotate {
-  stroke-dashoffset: calc(440 - (440 * 18) / 100);
+.box.one .percent .line.rotate {
+  /* stroke-dashoffset: calc(440 - (440 * 18) / 100); */
   /* hsla(色相（H）, 彩度（S）, 輝度（L)  */
   stroke: hsl(150, 66%, 53%);
 }
-.box.red .percent .line.rotate {
-  stroke-dashoffset: calc(440 - (440 * 36) / 100);
+.box.two .percent .line.rotate {
+  /* stroke-dashoffset: calc(440 - (440 * 36) / 100); */
   stroke: hsl(52, 66%, 53%);
 }
-.box.green .percent .line.rotate {
-  stroke-dashoffset: calc(440 - (440 * 12) / 100);
+.box.three .percent .line.rotate {
+  /* stroke-dashoffset: calc(440 - (440 * 12) / 100); */
   stroke: hsl(197, 66%, 53%);
 }
 .box.four .percent .line.rotate {
-  stroke-dashoffset: calc(440 - (440 * 34) / 100);
+  /* stroke-dashoffset: calc(440 - (440 * 34) / 100); */
   stroke: hsl(340, 66%, 53%);
-}
- 
-@-webkit-keyframes circleAnim {
-  0% {
-    stroke-dasharray: 0 440;
-  }
-  99.9%, to {
-    stroke-dasharray: 440 440;
-  }
 }
  
 @keyframes circleAnim {
@@ -157,6 +170,27 @@
   99.9%, to {
     stroke-dasharray: 440 440;
   }
+}
+
+.flashscreen{
+  position: absolute;
+  width: 600px;
+  height: 100%;
+  z-index: 999;
+  background-color: #fff;
+  /* display: none; */
+  opacity: 0;
+}
+.flashscreen.in{
+  /* display: block; */
+  /* opacity: 0; */
+  /* transition: opacity 1s linear; */
+  animation: flashscreenanime 1s forwards;
+}
+@keyframes flashscreenanime {
+  0% { opacity: 1; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .blackout{
@@ -173,15 +207,15 @@
 }
 
 .main{
+  z-index: 99;
   position: relative;
   width: 600px;
   height: 525px;
-  /* overflow-x: hidden; */
-  filter: blur(0);
-  transition: filter 5s;
+  opacity: 1;
 }
-.main.blur{
-  filter: blur(20px);
+.main.off{
+  transform: scaleY(0);
+  opacity: 0;
 }
 .bgi{
   width: 600px;
@@ -189,9 +223,18 @@
   object-fit: cover;
   object-position: 50% 85%;
   z-index: -1;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
   margin: 100px 0 125px;
-  border-top: 4px solid #fff;
-  border-bottom: 4px solid #fff;
+  transform: scaleY(0);
+  transition: transform 2s 0s,
+              border 0s 0s;
+}
+.bgi.apear{
+  transform: scaleY(1);
+}
+.bgi.apear2{
+  border-color: #fff;
 }
 .katsuya{
   position: absolute;
@@ -199,6 +242,11 @@
   left: calc(50% - 50px);
   width: 100px;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0s 3.7s;
+}
+.katsuya.in{
+  opacity: 1;
 }
 .katsuya.flash{
   animation: blinkEffect .1s step-end 3;
@@ -209,6 +257,16 @@
   border-radius: 4px;
   outline: 1.5px solid #303029;;
   background-color: #303029;
+  opacity: 0;
+  transition: opacity 0s 3s;
+}
+.frame.apear{
+  opacity: 1;
+}
+.gameover.over{
+  border-color: #dc6216;
+  color: #dc6216;
+  /* transform: border 0s 0s; */
 }
 .readme{
   top: 20px;
@@ -226,13 +284,13 @@
   bottom: -30px;
   left: 10px;
 }
-.check{
+.frame.check{
   bottom: 50px;
   left: 150px;
   z-index: 2;
   display: none;
 }
-.check.apear{
+.frame.check.open{
   display: block;
 }
 .command dt,
@@ -264,20 +322,18 @@
   animation: blinkEffect .6s step-end infinite;
 }
 .textbox{
-  bottom: 37.5px;
+  bottom: 0px;
   left: 185px;
   width: 400px;
-  height: 100px;
+  height: 140px;
   padding: 8px;
+  transition: opacity 0s 2s;
 }
 .text{
   width: 100%;
   white-space: nowrap;
   caret-color: transparent;
-  /* overflow: hidden;
-  border-right: 1px solid rgba(255,255,255,.5);
-  animation: typing 1.5s steps(24),
-    blink .5s steps(1) infinite alternate; */
+  padding: 4px;
 }
 
 @keyframes blinkEffect {

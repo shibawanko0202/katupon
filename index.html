@@ -12,7 +12,12 @@
 <body>
 
   <div class="graph" id="graph">
-    <div class="box blue">
+    <audio loop src="bgm/愛の旋律.mp3" type="audio/mp3" id="bgm01"></audio>
+    <p class="guaid">
+      ・スペース … BGM ON/OFF<br>
+      ・エンター … すすむ
+    </p>
+    <div class="box one" id="one">
       <div class="percent">
         <svg>
           <circle class="base" cx="75" cy="75" r="70"></circle>
@@ -24,10 +29,10 @@
             <span>%</span>
           </h3>
         </div>
-        <p class="text">『うん』</p>
+        <p class="graphtext">『うん』</p>
       </div>
     </div>
-    <div class="box red">
+    <div class="box two" id="two">
       <div class="percent">
         <svg>
           <circle class="base" cx="75" cy="75" r="70"></circle>
@@ -39,10 +44,10 @@
             <span>%</span>
           </h3>
         </div>
-        <p class="text">『うなちゃづけ』</p>
+        <p class="graphtext">『うなちゃづけ』</p>
       </div>
     </div>
-    <div class="box green">
+    <div class="box three" id="three">
       <div class="percent">
         <svg>
           <circle class="base" cx="75" cy="75" r="70"></circle>
@@ -54,10 +59,10 @@
             <span>%</span>
           </h3>
         </div>
-        <p class="text">謀ったなー！？</p>
+        <p class="graphtext">謀ったなー！？</p>
       </div>
     </div>
-    <div class="box four">
+    <div class="box four" id="four">
       <div class="percent">
         <svg>
           <circle class="base" cx="75" cy="75" r="70"></circle>
@@ -69,28 +74,30 @@
             <span>%</span>
           </h3>
         </div>
-        <p class="text">あ、順番来たよ</p>
+        <p class="graphtext">あ、順番来たよ</p>
       </div>
     </div>
   </div>
+
+  <div class="flashscreen" id="flashscreen"></div>
   
   <div class="blackout" id="blackout"></div>
 
   <div class="main blur" id="main">
-    <audio loop autoplay src="bgm/戦火を交えて(ループ).mp3" type="audio/mp3" id="bgm"></audio>
-    <img src="img/22805504.jpg" alt="" class="bgi">
+    <audio loop src="bgm/戦火を交えて(ループ).mp3" type="audio/mp3" id="bgm02"></audio>
+    <img src="img/22805504.jpg" alt="" class="bgi gameover" id="bgi">
     <img src="img/ドット絵(64ビット).png" alt="" class="katsuya" id="katsuya">
-    <div class="readme frame">
+    <div class="readme frame gameover">
       ・スペース … BGM ON/OFF<br>
-      ・ ↑ / ↓ … 選択<br>
+      ・ ↑ / ↓  … 選択<br>
       ・エンター … 決定
     </div>
-    <div class="mairei frame">
+    <div class="mairei frame gameover">
       けっこん<br>
       しようぜ
     </div>
-    <dl class="command frame">
-      <dt>いずほ</dt>
+    <dl class="command frame gameover">
+      <dt class="gameover">いずほ</dt>
       <dd>
         <ol class="command-lists">
           <li class="command-list">
@@ -119,12 +126,12 @@
         </ul>
       </dd>
     </dl>
-    <div class="textbox frame">
-      <p class="text" id="text">
-        かつやは　『けっこんしよう』　と言っている…。
-      </p>
+    <div class="textbox frame gameover" id="textbox">
+      <p class="text"></p>
+      <p class="text"></p>
+      <p class="text"></p>
+      <p class="text"></p>
     </div>
-    <!-- <button>結果表示</button> -->
   
   </div>
   <script src="js/main.js"></script>
