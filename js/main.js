@@ -106,7 +106,8 @@ const anim_sec = 50;
 // テキストの内容
 const texts = document.getElementsByClassName("text");
 let text_interval;
-const text00 = ["カツヤが　あらわれた！","カツヤは　『けっこんしよう』　と言っている…。"];
+const text00 = ["カツヤが　あらわれた！",
+"カツヤは　『けっこんしよう』　と言っている…。"];
 const text01 = ["カツヤ「・・・。"];
 const text02 = [
   "カツヤ「いや、そうじゃなくて・・・。",
@@ -221,7 +222,7 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
         },2000);
         setTimeout(()=>{
           resolve();
-        },2500);
+        },1200);
 
       }).then(()=>{
 
