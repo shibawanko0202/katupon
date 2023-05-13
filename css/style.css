@@ -27,17 +27,101 @@
 
 /* common */
 
+
+.QRscreen{
+  position: absolute;
+  width: 600px;
+  height: 525px;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin: calc((100vh - 525px) / 2) auto;
+  opacity: 1;
+  transition: all 3s;
+}
+.QRscreen.out{
+  opacity: 0;
+  filter: blur(20px);
+}
+.QRscreen .guaid{
+  color: #000000c0;
+  /* background-color: #028abc; */
+  font-size: 16px;
+  text-align: center;
+}
+.QRimg{
+  width: 300px;
+  height: 300px;
+}
+.QRtext{
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: center;
+  transition: color 1s;
+  color: #fff;
+}
+.QRtext.on{
+  color: #000;
+  animation: blinkEffect 2s 1s infinite;
+}
+.QRfile{
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.QRfile .QRimg{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bg_border{
+  position: absolute;
+  top: 0;
+  left: 3.5px;
+  width: 300px;
+  height: 300px;
+  /* background-color: #8be4f0; */
+  background-size: 13.63px;
+  opacity: 1;
+  transition: all 2s;
+}
+.bg_border.border1{
+  background-image:
+  linear-gradient(-90deg, #fff 50%, transparent 50%);
+}
+.bg_border.border2{
+  top: 3px;
+  background-image:
+  linear-gradient(0deg, transparent 50%, #fff 50%);
+  background-size: 13.7px 13.7px;
+}
+.bg_border.border3{
+  background-image:
+  linear-gradient(-90deg, transparent 50%, #fff 50%);
+}
+.bg_border.bordertop{
+  background-color: #fff;
+}
+.bg_border.out{
+  opacity: 0;
+}
+
 .graph{
   position: absolute;
-  width: 700px;
-  height: 100%;
+  width: 600px;
+  height: 525px;
   background-color: #000000e1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   gap: 6px 4px;
-  margin: 0 ;
+  margin: calc((100vh - 525px) / 2) auto;
   filter: blur(0);
 }
 .graph.blur{
@@ -45,9 +129,13 @@
 }
 .graph .guaid{
   position: absolute;
-  top: 40px;
+  top: 25px;
   left: calc(50% - 80px);
   opacity: .7;
+  transition: opacity 1s;
+}
+.graph .guaid.off{
+ opacity: 0;
 }
 .box {
   position: absolute;
@@ -69,26 +157,38 @@
   opacity: 1;
   transition: all 1.2s;
 }
+.percent{
+  transform: translateY(-1000px);
+
+}
+.percent.anim{
+  animation: graphboyoyon 1s 4s forwards;
+}
+@keyframes graphboyoyon {
+  0% { transform: translateY(-1000px); }
+  50% { transform: translateY(100px); }
+  100% { transform: translateY(0px); }
+}
 .box.one{
-  top: 80px;
-  left: calc(50% - 270px);
+  top: 50px;
+  left: calc(50% - 250px);
 }
 .box.two{
-  top: 80px;
-  left: calc(50% - 10px);
+  top: 50px;
+  left: calc(50% + 20px);
 }
 .box.three{
-  top:300px;
-  left: calc(50% - 270px);
+  top:270px;
+  left: calc(50% - 250px);
 }
 .box.four{
-  top:300px;
-  left: calc(50% - 10px);
+  top:270px;
+  left: calc(50% + 20px);
 }
 .box.big{
-  transform: scale(2);
-  top: calc(50% - 150px);
-  left: calc(50% - 140px);
+  transform: translateY(0px) scale(2);
+  top: calc(50% - 130px);
+  left: calc(50% - 120px);
 }
 .box.small{
   transform: scale(.5);
@@ -151,15 +251,12 @@
   stroke: hsl(150, 66%, 53%);
 }
 .box.two .percent .line.rotate {
-  /* stroke-dashoffset: calc(440 - (440 * 36) / 100); */
   stroke: hsl(52, 66%, 53%);
 }
 .box.three .percent .line.rotate {
-  /* stroke-dashoffset: calc(440 - (440 * 12) / 100); */
   stroke: hsl(197, 66%, 53%);
 }
 .box.four .percent .line.rotate {
-  /* stroke-dashoffset: calc(440 - (440 * 34) / 100); */
   stroke: hsl(340, 66%, 53%);
 }
  
@@ -178,13 +275,10 @@
   height: 100%;
   z-index: 999;
   background-color: #fff;
-  /* display: none; */
   opacity: 0;
+  /* filter: blur(2px); */
 }
 .flashscreen.in{
-  /* display: block; */
-  /* opacity: 0; */
-  /* transition: opacity 1s linear; */
   animation: flashscreenanime 1s forwards;
 }
 @keyframes flashscreenanime {
@@ -211,6 +305,7 @@
   position: relative;
   width: 600px;
   height: 525px;
+  margin: calc((100vh - 550px) / 2) auto;
   opacity: 1;
 }
 .main.off{

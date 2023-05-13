@@ -15,6 +15,10 @@
 const BGMcontrol = 1;
 
 
+// ガイド(当日はCSSで非表示)
+const guaid = document.getElementsByClassName("guaid");
+
+
 // BGM設定
 
 const BGM01 = document.getElementById('bgm01');
@@ -37,6 +41,8 @@ function BGMfeedout(){
 
 // SE設定
 
+const boyoyon_SE = new Audio("bgm/決定ボタンを押す52.mp3");
+boyoyon_SE.volume = 0.7 * BGMcontrol;
 const roulette_SE = new Audio("bgm/電子ルーレット回転中.mp3");
 roulette_SE.volume = 0.2 * BGMcontrol;
 const bigger_SE = new Audio("bgm/警告音1.mp3");
@@ -53,14 +59,28 @@ const gameover_SE = new Audio("bgm/ゲームオーバー.mp3");
 gameover_SE.volume = 0.3 * BGMcontrol;
 
 
+// スクリーン切り替え
+
+let screen_type = 1;
+// (QR(1) → graph(2)→ battle(3))
+
+
+// QRコード画面
+
+const QR = document.getElementById("QRscreen");
+const bg_borders = document.getElementsByClassName("bg_border");
+const QRtext = document.getElementById("QRtext"); 
+
+let QR_switch =1;
+
+
 // グラフ画面
 
 const graph = document.getElementById("graph");
 const lines = document.getElementsByClassName("line");
 const values = document.getElementsByClassName("value");
 const boxs = document.getElementsByClassName("box");
-
-let graph_switch = true;
+const percents = document.getElementsByClassName("percent");
 let rotate_switch = 1;
 
 
@@ -78,6 +98,7 @@ let count1 = 0;
 let count2 = 0;
 let count3 = 0;
 let count4 = 0;
+
 
 // コマンド設定
 
@@ -118,6 +139,7 @@ const text02 = [
 const text03 = ["カツヤ「・・・。"];
 const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はやく行こっ！"];
 
+
 // コントロールON/OFF
 
   function control_on(){
@@ -130,6 +152,7 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
   };
 
 // コントロールON/OFF
+
 
 // テキスト表示アニメーション関数
 
@@ -167,6 +190,7 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
 
 // テキスト表示アニメーション関数
 
+
 // ゲームオーバー関数
 
   function gameover_anime(i){
@@ -184,6 +208,7 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
   };
 
 // ゲームオーバー関数
+
 
 // バトル開始関数
 
@@ -255,6 +280,7 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
 
 // バトル開始関数
 
+
 // 確認用
 
 // graph_switch = false;
@@ -263,7 +289,12 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
 // control_off();
 
 // document.addEventListener('keydown',(e)=>{
-//   battle();
+//   for(let i = 0;i < bg_borders.length;i++){
+//     setTimeout(()=>{
+
+//       bg_borders[i].classList.add("out");
+//     },(i * 300));
+//   }
 // })
 
 // 確認用
@@ -272,18 +303,63 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
 // キーを打鍵してコントロール
 document.addEventListener('keydown',(e)=>{
 
-  if(graph_switch){
-    // グラフ画面
+  if(screen_type === 1){
+    if(control && e.code == 'Enter'){
+      BGM01.play();
+      control_off();
+      
+      if(QR_switch === 1){
+        bg_borders[3].classList.add("out");
+        for(let i = 0;i < bg_borders.length;i++){
+          setTimeout(()=>{
+            bg_borders[i].classList.add("out");
+          },(i * 2000));
+        };
 
-    if(e.code == 'Space'){
+        setTimeout(()=>{
+            QRtext.classList.add("on");
+            control_on();
+            QR_switch++;
+          },6000);
+
+      }else if(QR_switch === 2){
+
+        QR.classList.add("out");
+        for(let i = 0;i < percents.length;i++){
+          setTimeout(()=>{
+            percents[i].classList.add("anim");
+            setTimeout(()=>{
+              boyoyon_SE.currentTime = 0;
+              boyoyon_SE.play();
+            },(4200));
+          },(i * 500));
+        };
+        setTimeout(()=>{
+          guaid[1].classList.remove("off");
+          control_on();
+        },(7000));
+        QR_switch++; //２が暴発しないように一応。
+        screen_type++;
+
+      };
+
+    }else if(e.code == 'Space'){
+
       if(BGM01.paused){
         BGM01.play();
       } else {
         BGM01.pause();
       };
+
     };
 
-    if(e.code == 'Enter'){
+  }else if(screen_type === 2){
+    // グラフ画面
+
+    if(control && e.code == 'Enter'){
+
+      control_off();
+
       if(rotate_switch == 1){
         rotate_switch++;
 
@@ -308,7 +384,9 @@ document.addEventListener('keydown',(e)=>{
         roulette_SE.currentTime = 0;
         roulette_SE.play();
         setTimeout(()=>{
+          // 一番長いアニメーションに合わせた音
           roulette_SE.pause();
+          control_on();
         },(max_num * anim_sec));
         
         // カウントUPアニメーション
@@ -354,19 +432,30 @@ document.addEventListener('keydown',(e)=>{
         boxs[max_select].classList.remove("small");
         boxs[max_select].classList.add("big");
 
+        setTimeout(()=>{
+          control_on();
+        },2000);
+
       } else if(rotate_switch == 3){
 
         graph.classList.add("blur");
         main.classList.remove("off");
         BGM01.pause();
-        graph_switch = false;
+        screen_type++;
         battle();
 
       };
+
+    }else if(e.code == 'Space'){
+      if(BGM01.paused){
+        BGM01.play();
+      } else {
+        BGM01.pause();
+      };
     };
 
-  } else {
-    // グラフ画面終了後
+  } else if(screen_type === 3){
+    // バトル画面
 
     if(control){
 
@@ -378,7 +467,7 @@ document.addEventListener('keydown',(e)=>{
         };
       };
     
-      if(!check){ //4択画面
+      if(control && !check){ //4択画面
 
         for(let i = 0;i < com_lists.length;i++){
           com_lists[i].classList.remove("blink");
@@ -422,7 +511,7 @@ document.addEventListener('keydown',(e)=>{
           com_lists[current_command].classList.add("blink");
         };
         
-      } else if(check){ //確認画面
+      } else if(control && check){ //確認画面
   
         for(let i = 0;i < check_lists.length;i++){
           check_lists[i].classList.remove("blink");
@@ -471,9 +560,11 @@ document.addEventListener('keydown',(e)=>{
             if(current_command == 0){
               setTimeout(()=>{
                 word(text01);
+              },1000);
+              setTimeout(()=>{
                 blackout.classList.add("in");
                 BGMfeedout();
-              },1000);
+              },3000);
             }else if(current_command == 1){
               setTimeout(()=>{
                 word(text02);
@@ -483,6 +574,9 @@ document.addEventListener('keydown',(e)=>{
               setTimeout(()=>{
                 word(text03);
               },1000);
+              setTimeout(()=>{
+                control_on();
+              },4000);
             }else if(current_command == 3){
               setTimeout(()=>{
                 word(text04);

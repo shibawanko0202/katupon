@@ -11,9 +11,26 @@
 </head>
 <body>
 
+  <div class="QRscreen" id="QRscreen">
+    <p class="guaid">
+      ・スペース … BGM ON/OFF<br>
+      ・エンター … すすむ
+    </p>
+    <div class="QRfile">
+      <img src="img/QR_813149.png" alt="" class="QRimg">
+      <div class="bg_border border1"></div>
+      <div class="bg_border border2"></div>
+      <div class="bg_border border3"></div>
+      <div class="bg_border bordertop"></div>
+    </div>
+    <!-- <img src="img/QR_807226.png" alt="" class="QRimg"> -->
+    <p class="QRtext" id="QRtext">QRコードを読み込み<br>
+      選択肢を選んでください</p>
+  </div>
+
   <div class="graph" id="graph">
     <audio loop src="bgm/愛の旋律.mp3" type="audio/mp3" id="bgm01"></audio>
-    <p class="guaid">
+    <p class="guaid off">
       ・スペース … BGM ON/OFF<br>
       ・エンター … すすむ
     </p>
@@ -83,7 +100,7 @@
   
   <div class="blackout" id="blackout"></div>
 
-  <div class="main blur" id="main">
+  <div class="main" id="main">
     <audio loop src="bgm/戦火を交えて(ループ).mp3" type="audio/mp3" id="bgm02"></audio>
     <img src="img/22805504.jpg" alt="" class="bgi gameover" id="bgi">
     <img src="img/ドット絵(64ビット).png" alt="" class="katsuya" id="katsuya">
