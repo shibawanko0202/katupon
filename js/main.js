@@ -434,7 +434,7 @@ document.addEventListener('keydown',(e)=>{
 
         setTimeout(()=>{
           control_on();
-        },2000);
+        },1500);
 
       } else if(rotate_switch == 3){
 
