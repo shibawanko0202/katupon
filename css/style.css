@@ -10,7 +10,7 @@
   html{
     height: 100%;
     width: 100%;
-    cursor: none;
+    /* cursor: none; */
   }
 
   body{
@@ -79,6 +79,13 @@
   top: 0;
   left: 0;
 }
+/* .QRfile .QRimg.siro{
+  width: 270px;
+  height: 270px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+} */
 .bg_border{
   position: absolute;
   top: 0;
@@ -104,6 +111,12 @@
   background-image:
   linear-gradient(-90deg, transparent 50%, #fff 50%);
 }
+/* .bg_border.border4{
+  top: 3px;
+  background-image:
+  linear-gradient(0deg, #fff 50%, transparent 50%);
+  background-size: 13.7px 13.7px;
+} */
 .bg_border.bordertop{
   background-color: #fff;
 }
@@ -189,7 +202,19 @@
   transform: translateY(0px) scale(2);
   top: calc(50% - 130px);
   left: calc(50% - 120px);
+  /* animation: bigboyo 1s forwards; */
 }
+/* @keyframes bigboyo {
+  0% { transform: scale(1); }
+  40% { top: calc(50% - 130px);
+    left: calc(50% - 120px); }
+  96% { transform: scale(2.3);
+    top: calc(50% - 130px);
+    left: calc(50% - 120px); }
+  100% { transform: scale(2); 
+    top: calc(50% - 130px);
+    left: calc(50% - 120px);}
+} */
 .box.small{
   transform: scale(.5);
   opacity: .1;
@@ -316,12 +341,13 @@
   width: 600px;
   height: 300px;
   object-fit: cover;
-  object-position: 50% 85%;
+  object-position: 10% 50%;
   z-index: -1;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
   margin: 100px 0 125px;
   transform: scaleY(0);
+  filter: grayscale(10%) contrast(.9);
   transition: transform 2s 0s,
               border 0s 0s;
 }
@@ -333,9 +359,9 @@
 }
 .katsuya{
   position: absolute;
-  top: 40%;
-  left: calc(50% - 50px);
-  width: 100px;
+  top: 36%;
+  left: calc(50% - 65px);
+  width: 130px;
   z-index: 0;
   opacity: 0;
   transition: opacity 0s 2.3s;

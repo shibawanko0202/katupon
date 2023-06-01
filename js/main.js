@@ -283,18 +283,9 @@ const text04 = ["カツヤ「あ、そっすね・・・。","いずほ「はや
 
 // 確認用
 
-// graph_switch = false;
-// graph.classList.add("off");
-// main.classList.remove("blur");
-// control_off();
-
 // document.addEventListener('keydown',(e)=>{
-//   for(let i = 0;i < bg_borders.length;i++){
-//     setTimeout(()=>{
-
-//       bg_borders[i].classList.add("out");
-//     },(i * 300));
-//   }
+//   screen_type = 3;
+//   battle();
 // })
 
 // 確認用
